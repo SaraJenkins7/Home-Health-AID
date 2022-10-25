@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <style>
+        h1 {
+            padding-left: 2%;
+            padding-top: 2%;
+            padding-bottom: 2%;
+            margin: auto;
+            text-align: center;
+        }
+        img {
+            padding-left: 45%;
+        }
+    </style>
+
+    <title>Profile</title>
+</head>
+<body>
+    <div id="wrapper">
+        <h1 class="teal darken-2 white-text">
+            <a href="hha.html"><i class="medium material-icons left white-text">home</i></a>
+            Profile
+        </h1>
+        <div class="row">
+            <img src="#" alt="profile picture">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="icon_first_name" type="text" class="validate">
+                        <label for="icon_first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">manage_accounts</i>
+                        <input id="icon_username" type="text" class="validate">
+                        <label for="icon_username">Username</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">lock</i>
+                        <input id="icon_password" type="password" class="validate">
+                        <label for="icon_password">Password</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="tel" class="validate">
+                        <label for="icon_telephone">Phone Number</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">cake</i>
+                        <input id="icon_dob" type="date" class="validate">
+                        <label for="icon_dob">DOB</label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
