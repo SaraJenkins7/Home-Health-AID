@@ -1,0 +1,12 @@
+{
+    "short_name": "HHA",
+    "name": "Home Health AID",
+    "description": "Stay organized and keep track of your client's health",
+    "start_url": "/Home%20Health%20AID/hha.html",
+    "scope": "/",
+    "display": "fullscreen",
+    "background_color": "#263238",
+    "theme_color": "#004d40",
+    "dir": "auto",
+    "orientation": "portrait"
+}
