@@ -60,9 +60,101 @@
                         <i class="material-icons prefix">monitor_weight</i>
                         <input placeholder="WT" id="icon_wt" type="number" class="validate">
                     </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
                 </div>
             </form>
         </div>
     </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getFirestore, collection, getDocs, addDoc, doc, deleteDoc, query, where, updateDoc } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDn0z77A2OiiqX_COoNYd8_CCB6yS-yW7U",
+            authDomain: "home-health-aid.firebaseapp.com",
+            projectId: "home-health-aid",
+            storageBucket: "home-health-aid.appspot.com",
+            messagingSenderId: "483007267812",
+            appId: "1:483007267812:web:cb75ddd05c9c32b8fb7df1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        async function getClients(db) {
+            const clientsCol = collection(db, "Clients");
+            const clientsSnapshot = await getDocs(clientsCol);
+            const clientsList = clientsSnapshot.docs.map((doc) => doc.data());
+            return clientsList;
+        };
+
+        const clientsList = document.querySelector('#clients-list');
+        const form = document.querySelector('#add-clients-form');
+
+        function renderClients(dc) {
+            let li = document.createElement("li");
+            let birthdate = document.createElement("span");
+            let hr = document.createElement("span");
+            let bp = document.createElement("span");
+            let o2 = document.createElement("span");
+            let temp = document.createElement("span");
+            let wt = document.createElement("span");
+            let cross = document.createElement("div");
+
+            li.setAttribute('data-id', dc.id);
+            birthdate.textContent = dc.data().birthdate;
+            hr.textContent = dc.data().hr;
+            bp.textContent = dc.data().bp;
+            o2.textContent = dc.data().o2;
+            temp.textContent = dc.data().o2;
+            wt.textContent = dc.data().wt;
+            cross.textContent = 'Delete';
+
+            clientsList.appendChild(li);
+
+            cross.addEventListener('click', (e) => {
+                e.stopPropagation();
+                let id = e.target.parentElement.getAttribute('data-id');
+                deleteDoc(doc(db, "clients", id));
+            });
+        };
+
+        const clients = getDocs(collection(db, "clients")).then((snapshot) => {
+            snapshot.forEach((doc) => {
+                renderClients(doc);
+            });
+        });
+
+        const q = query(collection(db, "clients"), where("birthdate", "==", "01/01/1964"));
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, "=>", doc.data());
+        });
+
+        const upDoc = doc(db, "clients", "VnqrXgKCZvhXGgiDvEg5");
+
+        updateDoc(upDoc, {
+            birthdate: "02/02/1945"
+        });
+
+        form.addEventListener(('submit'), (e) => {
+            e.preventDefault();
+            const docRef = addDoc(collection(db, "clients"), {
+                birthdate: form.birthdate.value,
+                hr: form.hr.value,
+                bp: form.bp.value,
+                o2: form.o2.value,
+                wt: form.wt.value
+            });
+        });
+    </script>
+    <script src="/js/db.js"></script>
+    <script src="/js/app.js"></script>
 </body>
 </html>
